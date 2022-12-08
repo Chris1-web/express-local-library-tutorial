@@ -1,6 +1,6 @@
 const Author = require("../models/author");
 const Book = require("../models/book");
-const async = require("book");
+const async = require("async");
 
 // Display list of all Authors
 exports.author_list = (req, res, next) => {
@@ -44,7 +44,7 @@ exports.author_detail = (req, res, next) => {
       res.render("author_detail", {
         title: "Author Detail",
         author: results.author,
-        author_books: results.authors_book,
+        author_books: results.authors_books,
       });
     }
   );
