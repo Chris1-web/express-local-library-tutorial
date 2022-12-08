@@ -74,7 +74,7 @@ exports.book_detail = (req, res, next) => {
       res.render("book_detail", {
         title: results.book.title,
         book: results.book,
-        book_instance: results.book_instance,
+        book_instances: results.book_instance,
       });
     }
   );
