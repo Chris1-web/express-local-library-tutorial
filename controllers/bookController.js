@@ -47,7 +47,6 @@ exports.book_list = (req, res, next) => {
       // successful, so render
       res.render("book_list", { title: "Book List", book_list: list_books });
     });
-  res.send("NOT IMPLEMENTED: Book list");
 };
 
 // Display detail page for a specific book.
