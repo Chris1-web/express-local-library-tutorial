@@ -2,13 +2,18 @@ const Genre = require("../models/genre");
 
 // Display list of all Genre
 exports.genre_list = (req, res, next) => {
-  Genre.find().exec(function (err, list_genre) {
-    if (err) {
-      return next(err);
-    }
-    // Successful, so render
-    res.render("genre_list", { title: "Author List", genre_list: list_genre });
-  });
+  Genre.find()
+    .sort([["name", "ascending"]])
+    .exec(function (err, list_genres) {
+      if (err) {
+        return next(err);
+      }
+      // Successful, so render
+      res.render("genre_list", {
+        title: "Genre List",
+        list_genres: list_genres,
+      });
+    });
 };
 
 // Display detail list for a specific genre
