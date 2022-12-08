@@ -1,4 +1,4 @@
-const bookInstance = require("../models/bookinstance");
+const BookInstance = require("../models/bookinstance");
 
 // Display list of all BookInstance
 exports.bookinstance_list = (req, res) => {
