@@ -1,8 +1,11 @@
 const BookInstance = require("../models/bookinstance");
 const Book = require("../models/book");
 
+const async = require("async");
+
 // express-validator for Forms
 const { body, validationResult } = require("express-validator");
+const author = require("../models/author");
 
 // Display list of all BookInstance
 exports.bookinstance_list = (req, res, next) => {
@@ -110,12 +113,18 @@ exports.bookinstance_create_post = [
 // Display BookInstance delete form on GET
 exports.bookinstance_delete_get = (req, res) => {
   res.render("bookinstance_delete.pug", { title: "Delete Book Instance" });
-  // res.send("NOT IMPLEMENTED: BookInstance delete GET");
 };
 
 // Handle BookInstance delete form on POST
 exports.bookinstance_delete_post = (req, res) => {
-  res.send("NOT IMPLEMENTED: BookInstance delete POST");
+  // get bookinstance document from database
+  BookInstance.findByIdAndRemove(req.params.id, (err) => {
+    if (err) {
+      return next(err);
+    }
+    // successful, go to book instance list
+    res.redirect("/catalog/bookinstances");
+  });
 };
 
 // Display BookInstance update form on GET
