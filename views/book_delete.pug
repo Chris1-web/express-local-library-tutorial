@@ -1,0 +1,31 @@
+extends layout 
+
+block content 
+    h1 #{title}
+
+    if book_instance.length 
+        p #[strong delete the following Book Instances before applying to delete this book]
+
+        div(style='margin-left:20px;margin-top:20px')
+            h4 Book Instances
+
+            dl 
+            each instance in book_instance 
+                dt 
+                    a(href=instance.url) #{instance.imprint}
+                dd #{instance.due_back}
+
+
+                if instance.status === "Available"
+                    dd.text-success #{instance.status}
+                else if instance.status === "Maintenance"
+                    dd.text-danger #{instance.status}
+                else
+                    dd.text-warning #{instance.status}
+    else 
+        p Do you really want to delete this Book Instance?
+        form(method="POST" action="")
+            .form-group
+                input#authorid.form-control(type="hidden" name="authorid", required="true" value="authorid")
+            button.btn.btn-primary(type="submit") Delete
+

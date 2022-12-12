@@ -20,7 +20,7 @@ router.get("/book/create", book_controller.book_create_get);
 router.post("/book/create", book_controller.book_create_post);
 
 // GET request to delete Book
-router.delete("/book/:id/delete", book_controller.book_delete_get);
+router.get("/book/:id/delete", book_controller.book_delete_get);
 
 // POST request to delete Book.
 router.post("/book/:id/delete", book_controller.book_delete_post);
