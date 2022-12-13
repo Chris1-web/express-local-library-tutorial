@@ -9,16 +9,24 @@ var usersRouter = require("./routes/users");
 var catalogRouter = require("./routes/catalog");
 const wiki = require("./routes/wiki");
 
+const compression = require("compression");
+const helmet = require("helmet");
+
 var app = express();
 
-// mongoose
+// mongoose connection
 const mongoose = require("mongoose");
-const mongoDB =
+const dev_db_url =
   "mongodb+srv://expressLibrary:mypassword@cluster0.gncphnd.mongodb.net/?retryWrites=true&w=majority";
+const mongoDB = process.env.mongoDB_URL || dev_db_url;
 
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
+
+// compress file
+app.use(compression()); //compress all routes
+app.use(helmet());
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
