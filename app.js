@@ -18,7 +18,7 @@ var app = express();
 const mongoose = require("mongoose");
 const dev_db_url =
   "mongodb+srv://expressLibrary:mypassword@cluster0.gncphnd.mongodb.net/?retryWrites=true&w=majority";
-const mongoDB = process.env.mongoDB_URL || dev_db_url;
+const mongoDB = process.env.MONGODB_URL || dev_db_url;
 
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
