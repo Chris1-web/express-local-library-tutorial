@@ -1,12 +1,12 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
+const createError = require("http-errors");
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
 
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
-var catalogRouter = require("./routes/catalog");
+const indexRouter = require("./routes/index");
+const usersRouter = require("./routes/users");
+const catalogRouter = require("./routes/catalog");
 const wiki = require("./routes/wiki");
 
 const compression = require("compression");
@@ -16,9 +16,8 @@ var app = express();
 
 // mongoose connection
 const mongoose = require("mongoose");
-const dev_db_url =
-  "mongodb+srv://expressLibrary:mypassword@cluster0.gncphnd.mongodb.net/?retryWrites=true&w=majority";
-const mongoDB = process.env.MONGODB_URL || dev_db_url;
+const mongoDB = process.env.MONGO_DB_URL;
+
 
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
